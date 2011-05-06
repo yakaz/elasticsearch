@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules//benchmark-micro.iml" filepath="$PROJECT_DIR$/.idea/modules//benchmark-micro.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/elasticsearch.iml" filepath="$PROJECT_DIR$/.idea/modules/elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/elasticsearch-root.iml" filepath="$PROJECT_DIR$/.idea/modules/elasticsearch-root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-analysis-hashsplitter.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-analysis-hashsplitter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-analysis-icu.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-analysis-icu.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules//plugin-cloud-aws.iml" filepath="$PROJECT_DIR$/.idea/modules//plugin-cloud-aws.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-lang-groovy.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-lang-groovy.iml" />
