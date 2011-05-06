@@ -20,7 +20,8 @@
 package org.elasticsearch.index.analysis;
 
 import org.apache.lucene.analysis.Tokenizer;
-import org.apache.lucene.analysis.path.PathHierarchyTokenizer;
+import org.apache.lucene.analysis.path.PathHierarchyTokenizerUpcoming;
+import org.apache.lucene.analysis.path.ReversePathHierarchyTokenizerUpcoming;
 import org.elasticsearch.ElasticSearchIllegalArgumentException;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.assistedinject.Assisted;
@@ -36,13 +37,17 @@ public class PathHierarchyTokenizerFactory extends AbstractTokenizerFactory {
 
     private final char delimiter;
     private final char replacement;
+    private final boolean reverse;
+    private final int skip;
 
     @Inject public PathHierarchyTokenizerFactory(Index index, @IndexSettings Settings indexSettings, @Assisted String name, @Assisted Settings settings) {
         super(index, indexSettings, name, settings);
         bufferSize = settings.getAsInt("buffer_size", 1024);
         String delimiter = settings.get("delimiter");
+        reverse = settings.getAsBoolean("reverse", false);
+        skip = settings.getAsInt("skip", reverse ? ReversePathHierarchyTokenizerUpcoming.DEFAULT_SKIP : PathHierarchyTokenizerUpcoming.DEFAULT_SKIP);
         if (delimiter == null) {
-            this.delimiter = PathHierarchyTokenizer.DEFAULT_DELIMITER;
+            this.delimiter = reverse ? ReversePathHierarchyTokenizerUpcoming.DEFAULT_DELIMITER : PathHierarchyTokenizerUpcoming.DEFAULT_DELIMITER;
         } else if (delimiter.length() > 1) {
             throw new ElasticSearchIllegalArgumentException("delimiter can only be a one char value");
         } else {
@@ -60,6 +65,10 @@ public class PathHierarchyTokenizerFactory extends AbstractTokenizerFactory {
     }
 
     @Override public Tokenizer create(Reader reader) {
-        return new PathHierarchyTokenizer(reader, bufferSize, delimiter, replacement);
+        if (reverse) {
+            return new ReversePathHierarchyTokenizerUpcoming(reader, bufferSize, delimiter, replacement, skip);
+        } else {
+            return new PathHierarchyTokenizerUpcoming(reader, bufferSize, delimiter, replacement, skip);
+        }
     }
 }
