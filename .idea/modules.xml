@@ -15,6 +15,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules//plugin-river-rabbitmq.iml" filepath="$PROJECT_DIR$/.idea/modules//plugin-river-rabbitmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin-river-twitter.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin-river-twitter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules//plugin-river-wikipedia.iml" filepath="$PROJECT_DIR$/.idea/modules//plugin-river-wikipedia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules//plugin-script-dynamicboosting.iml" filepath="$PROJECT_DIR$/.idea/modules//plugin-script-dynamicboosting.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules//plugin-transport-memcached.iml" filepath="$PROJECT_DIR$/.idea/modules//plugin-transport-memcached.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules//plugin-transport-thrift.iml" filepath="$PROJECT_DIR$/.idea/modules//plugin-transport-thrift.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules//plugin-transport-wares.iml" filepath="$PROJECT_DIR$/.idea/modules//plugin-transport-wares.iml" />
