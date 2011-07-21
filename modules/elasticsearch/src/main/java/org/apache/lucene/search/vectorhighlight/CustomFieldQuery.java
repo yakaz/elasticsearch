@@ -31,6 +31,8 @@ import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author kimchy (shay.banon)
@@ -111,7 +113,23 @@ public class CustomFieldQuery extends FieldQuery {
                 // ignore
             }
         } else {
-            super.flatten(sourceQuery, flatQueries);
+            // Handled classes in Lucene through super (FieldQuery)
+            if(sourceQuery instanceof BooleanQuery ||
+                    sourceQuery instanceof DisjunctionMaxQuery ||
+                    sourceQuery instanceof TermQuery ||
+                    sourceQuery instanceof PhraseQuery) {
+                super.flatten(sourceQuery, flatQueries);
+            } else { // Use extractTerms to construct TermQuerys (should be how Lucene should do btw...)
+                Set<Term> terms = new TreeSet<Term>();
+                try {
+                    sourceQuery.extractTerms(terms);
+                } catch (UnsupportedOperationException ignore) {
+                    return; // ignore and discard query
+                }
+                for (Term term : terms) {
+                    super.flatten(new TermQuery(term), flatQueries);
+                }
+            }
         }
     }
 
